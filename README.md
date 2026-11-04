@@ -1,6 +1,6 @@
 # Sky Skirmish
 
-A private browser jetpack shooter inspired by Mini Militia, with original name, art and sound. Everything is drawn and synthesised in code, so there are no asset files. It runs entirely on your own computer.
+A browser jetpack shooter with original art and sound. Everything is drawn and synthesised in code, so there are no asset files. It runs entirely on your own computer.
 
 ## Play
 
