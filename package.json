@@ -1,0 +1,19 @@
+{
+  "name": "sky-skirmish",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Free browser jetpack shooter. Original game, playable with keyboard, mouse, touch or gamepad.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
+  }
+}

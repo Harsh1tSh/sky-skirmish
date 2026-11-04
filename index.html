@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#10131c" />
+  <title>Sky Skirmish</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="touch" class="hidden" aria-hidden="true">
+    <div id="stick-left" class="stick-zone"><div class="stick-base"><div class="stick-nub"></div></div></div>
+    <div id="stick-right" class="stick-zone"><div class="stick-base"><div class="stick-nub"></div></div></div>
+    <div class="touch-buttons">
+      <button data-touch="grenade">GRN</button>
+      <button data-touch="melee">HIT</button>
+      <button data-touch="reload">RLD</button>
+      <button data-touch="swap">SWP</button>
+      <button data-touch="interact">GET</button>
+      <button data-touch="scope">ZM</button>
+    </div>
+    <button id="touch-pause" aria-label="Pause">II</button>
+  </div>
+
+  <div id="rotate" class="hidden"><p>Turn your device sideways to play</p></div>
+
+  <section id="screen-menu" class="screen">
+    <div class="hero">
+      <h1 class="logo">SKY<span>SKIRMISH</span></h1>
+      <p class="tagline">Strap on a jetpack. Grab a gun. Own the sky.</p>
+      <nav class="menu-buttons">
+        <button class="btn primary big" data-go="setup">Play</button>
+        <button class="btn" data-go="howto">How to play</button>
+        <button class="btn" data-go="stats">Stats</button>
+        <button class="btn" data-go="settings">Settings</button>
+      </nav>
+    </div>
+  </section>
+
+  <section id="screen-setup" class="screen hidden">
+    <div class="panel wide">
+      <header class="panel-head">
+        <h2>Match setup</h2>
+        <button class="btn ghost" data-go="menu">Back</button>
+      </header>
+
+      <div class="field">
+        <label class="field-label">Game version</label>
+        <div class="seg" id="version-seg" role="group" aria-label="Game version">
+          <button data-version="normal">Normal</button>
+          <button data-version="modded" class="seg-mod">Modded</button>
+        </div>
+        <p class="note" id="version-note"></p>
+      </div>
+
+      <div id="mods-panel" class="mods hidden">
+        <div class="field">
+          <label class="field-label">Presets</label>
+          <div class="chips" id="mod-presets"></div>
+        </div>
+        <div class="mod-grid" id="mod-toggles"></div>
+        <div class="row">
+          <div class="field">
+            <label class="field-label" for="mod-weapon">Start every life with</label>
+            <select id="mod-weapon"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Mode</label>
+        <div class="seg" id="mode-seg" role="group" aria-label="Mode">
+          <button data-mode="ffa">Free for all</button>
+          <button data-mode="tdm">Team battle</button>
+          <button data-mode="ctf">Capture flag</button>
+          <button data-mode="survival">Survival</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Map</label>
+        <div class="map-grid" id="map-grid"></div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label class="field-label" for="bots"><span id="bots-label">Bots</span>: <b id="bots-value"></b></label>
+          <input type="range" id="bots" min="1" max="11" />
+        </div>
+        <div class="field">
+          <label class="field-label">Bot skill</label>
+          <div class="seg small" id="diff-seg" role="group" aria-label="Bot skill">
+            <button data-diff="easy">Easy</button>
+            <button data-diff="normal">Normal</button>
+            <button data-diff="hard">Hard</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="limits-row">
+        <div class="field">
+          <label class="field-label" for="time-limit">Time limit</label>
+          <select id="time-limit">
+            <option value="180">3 minutes</option>
+            <option value="300">5 minutes</option>
+            <option value="600">10 minutes</option>
+            <option value="0">None</option>
+          </select>
+        </div>
+        <div class="field" id="score-field">
+          <label class="field-label" for="score-limit">Kills to win</label>
+          <select id="score-limit">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="0">None</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn primary big full" id="start-match">Start match</button>
+    </div>
+  </section>
+
+  <section id="screen-howto" class="screen hidden">
+    <div class="panel">
+      <header class="panel-head">
+        <h2>How to play</h2>
+        <button class="btn ghost" data-go="menu">Back</button>
+      </header>
+      <p class="note">Your jetpack refuels on the ground. Your health comes back after 5 seconds without being hit. Crouching steadies your aim, and headshots hit harder.</p>
+      <table class="keys">
+        <tr><th>Move</th><td><kbd>A</kbd> <kbd>D</kbd></td></tr>
+        <tr><th>Fly</th><td><kbd>W</kbd> or <kbd>Space</kbd></td></tr>
+        <tr><th>Crouch, or drop through a platform</th><td><kbd>S</kbd></td></tr>
+        <tr><th>Aim</th><td>Mouse, or arrow keys</td></tr>
+        <tr><th>Shoot</th><td>Left click, or <kbd>J</kbd></td></tr>
+        <tr><th>Zoom</th><td>Hold right click or <kbd>Z</kbd>, or toggle with <kbd>V</kbd></td></tr>
+        <tr><th>Melee</th><td><kbd>F</kbd> or <kbd>K</kbd></td></tr>
+        <tr><th>Throw grenade</th><td><kbd>G</kbd> or <kbd>L</kbd></td></tr>
+        <tr><th>Change grenade, gas or mine</th><td><kbd>T</kbd></td></tr>
+        <tr><th>Reload</th><td><kbd>R</kbd></td></tr>
+        <tr><th>Switch weapon</th><td><kbd>Q</kbd>, mouse wheel, <kbd>1</kbd> <kbd>2</kbd></td></tr>
+        <tr><th>Swap for the gun at your feet</th><td><kbd>E</kbd></td></tr>
+        <tr><th>Scoreboard</th><td><kbd>Tab</kbd> (hold)</td></tr>
+        <tr><th>Pause / Mute</th><td><kbd>Esc</kbd> / <kbd>M</kbd></td></tr>
+      </table>
+      <p class="note">Gamepads work too: left stick moves, right stick aims, right trigger shoots. On a phone, use the on-screen sticks.</p>
+    </div>
+  </section>
+
+  <section id="screen-stats" class="screen hidden">
+    <div class="panel">
+      <header class="panel-head">
+        <h2>Stats</h2>
+        <button class="btn ghost" data-go="menu">Back</button>
+      </header>
+      <p class="note">Modded matches are kept separate so your Normal record stays honest.</p>
+      <table class="stats" id="stats-table"></table>
+      <button class="btn ghost danger" id="reset-stats">Reset stats</button>
+    </div>
+  </section>
+
+  <section id="screen-settings" class="screen hidden">
+    <div class="panel">
+      <header class="panel-head">
+        <h2>Settings</h2>
+        <button class="btn ghost" id="settings-back">Back</button>
+      </header>
+      <div class="row">
+        <div class="field">
+          <label class="field-label" for="player-name">Your name</label>
+          <input type="text" id="player-name" maxlength="14" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label class="field-label">Your colour</label>
+          <div class="swatches" id="swatches"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="volume">Volume: <b id="volume-value"></b></label>
+        <input type="range" id="volume" min="0" max="100" />
+      </div>
+      <label class="check"><input type="checkbox" id="opt-shake" /> Screen shake</label>
+      <label class="check"><input type="checkbox" id="opt-damage" /> Damage numbers</label>
+      <label class="check"><input type="checkbox" id="opt-quality" /> Reduced effects (for slower computers)</label>
+      <button class="btn" id="fullscreen">Toggle fullscreen</button>
+    </div>
+  </section>
+
+  <section id="screen-pause" class="screen hidden">
+    <div class="panel narrow">
+      <h2 class="center">Paused</h2>
+      <button class="btn primary big full" id="resume">Resume</button>
+      <button class="btn full" id="restart">Restart match</button>
+      <button class="btn full" id="pause-settings">Settings</button>
+      <button class="btn full" id="pause-howto">Controls</button>
+      <button class="btn ghost full" id="quit">Quit to menu</button>
+    </div>
+  </section>
+
+  <section id="screen-results" class="screen hidden">
+    <div class="panel">
+      <h2 class="center" id="result-title"></h2>
+      <p class="center note" id="result-sub"></p>
+      <table class="stats results" id="result-table"></table>
+      <div class="row">
+        <button class="btn primary big full" id="play-again">Play again</button>
+        <button class="btn big full" id="change-setup">Change setup</button>
+      </div>
+      <button class="btn ghost full" id="results-menu">Main menu</button>
+    </div>
+  </section>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
