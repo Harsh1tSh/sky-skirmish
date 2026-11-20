@@ -2,6 +2,8 @@
 
 A browser jetpack shooter with original art and sound. Everything is drawn and synthesised in code, so there are no asset files. It runs entirely on your own computer.
 
+![A rocket explodes on the Neon Foundry map while the kill feed announces an elimination](docs/screenshots/09-rocket-foundry.jpg)
+
 ## Play
 
 Needs [Node.js](https://nodejs.org). Run:
@@ -42,6 +44,23 @@ Gamepads and touch screens also work.
 - **Weapons:** 12, from the starting pistol to a burst rifle, sniper, rocket launcher, flamethrower, piercing rail gun and bouncing saw discs. Plus frag grenades, gas grenades, proximity mines and melee.
 - **Bots:** three skill levels. They navigate the map, manage fuel, collect weapons and throw grenades.
 - **Normal / Modded switch** on the match setup screen. See below.
+
+## Screenshots
+
+| | |
+| --- | --- |
+| ![Main menu, with a live bot match playing behind it](docs/screenshots/01-menu.jpg) | ![Match setup with the Modded version on, showing mod presets and toggles](docs/screenshots/03-mods.jpg) |
+| **Main menu.** A live bot match plays in the background. | **Match setup.** Pick a mode, map and bots, and switch between Normal and Modded. |
+| ![Team battle on the Frostbite Caves ramps](docs/screenshots/08-tdm-caves.jpg) | ![The scoreboard open during a team battle](docs/screenshots/07-scoreboard-caves.jpg) |
+| **Team battle** on Frostbite Caves. | **Scoreboard.** Hold Tab at any time. |
+| ![Carrying the enemy flag in Capture the Flag](docs/screenshots/05-ctf.jpg) | ![Zoomed out with the sniper on Dust Yard](docs/screenshots/06-sniper-dust.jpg) |
+| **Capture the Flag.** Grab the enemy flag and bring it home. | **Sniper zoom** on Dust Yard. |
+| ![The first wave of Survival mode starting](docs/screenshots/10-survival.jpg) | ![The results screen after a free-for-all match](docs/screenshots/11-results.jpg) |
+| **Survival.** Hold out against growing waves of raiders. | **Results** at the end of every match. |
+
+![The game on a phone in landscape, with on-screen sticks and buttons](docs/screenshots/12-phone.jpg)
+
+**On a phone:** two virtual sticks for moving and aiming, plus buttons for everything else.
 
 ## Normal and Modded
 
